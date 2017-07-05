@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<!-- classify beans -->
+	
+	<bean id="classifyDao" class="ssh.dao.ClassifyDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="classifyService" class="ssh.service.ClassifyService">
+		<property name="classifyDao" ref="classifyDao"></property>
+	</bean>
+	
+	<!-- dishes beans -->
+	
+	<bean id="dishesDao" class="ssh.dao.DishesDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="dishesService" class="ssh.service.DishesService">
+		<property name="dishesDao" ref="dishesDao"></property>
+	</bean>
+	
+	<bean id="dishesAction" class="ssh.actions.DishesAction"
+		scope="prototype">
+		<property name="dishesService" ref="dishesService"></property>
+		<property name="classifyService" ref="classifyService"></property>
+	</bean>	
+	
+	<!-- user beans -->
+	
+	<bean id="userDao" class="ssh.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userService" class="ssh.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<bean id="userAction" class="ssh.actions.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- orderTable beans -->
+	
+	<bean id="orderTableDao" class="ssh.dao.OrderTableDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="orderTableService" class="ssh.service.OrderTableService">
+		<property name="orderTableDao" ref="orderTableDao"></property>
+	</bean>
+	<!-- orderItem beans -->
+	
+	<bean id="orderItemDao" class="ssh.dao.OrderItemDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="orderItemService" class="ssh.service.OrderItemService">
+		<property name="orderItemDao" ref="orderItemDao"></property>
+	</bean>
+	
+	<bean id="orderItemAction" class="ssh.actions.OrderItemAction">
+		<property name="orderItemService" ref="orderItemService"></property>
+		<property name="orderTableService" ref="orderTableService"></property>
+	</bean>
+	
+	<!-- admin beans -->
+	
+	<bean id="adminDao" class="ssh.dao.AdminDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="adminService" class="ssh.service.AdminService">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	
+	<bean id="adminAction" class="ssh.actions.AdminAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+</beans>

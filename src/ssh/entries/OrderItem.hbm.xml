@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-25 17:22:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ssh.entries.OrderItem" table="ORDERITEM">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="num" type="java.lang.Integer">
+            <column name="NUM" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="TOTAL" />
+        </property>
+        <many-to-one name="dishes" class="ssh.entries.Dishes" fetch="join">
+            <column name="DISHES" />
+        </many-to-one>
+        <many-to-one name="orderId" class="ssh.entries.OrderTable" fetch="join" lazy="false">
+            <column name="ORDERID" />
+        </many-to-one>
+        <property name="dishesName" type="java.lang.String">
+            <column name="DISHESNAME" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" />
+        </property>
+    </class>
+</hibernate-mapping>

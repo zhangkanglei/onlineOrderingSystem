@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-13 23:43:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ssh.entries.Dishes" table="DISHES">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="did" type="java.lang.String">
+            <column name="DID" />
+        </property>
+        <property name="dishes" type="java.lang.String">
+            <column name="DISHES" />
+        </property>
+        
+        <property name="price" type="java.math.BigDecimal">
+            <column name="PRICE" />
+        </property>
+        <property name="synopsis" type="java.lang.String">
+            <column name="SYNOPSIS" />
+        </property>
+        <property name="sum" type="java.lang.Integer">
+            <column name="SUM" />
+        </property>
+        <property name="imagePath" type="java.lang.String">
+            <column name="IMAGEPATH" />
+        </property>
+        <many-to-one name="classify" class="ssh.entries.Classify" fetch="join">
+            <column name="CLASSIFY" />
+        </many-to-one>
+        <property name="total" type="java.math.BigDecimal">
+            <column name="TOTAL" />
+        </property>
+    </class>
+</hibernate-mapping>

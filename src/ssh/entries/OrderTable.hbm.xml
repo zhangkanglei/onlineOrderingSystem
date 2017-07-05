@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-25 17:22:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ssh.entries.OrderTable" table="ORDERTABLE">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="uid" type="java.lang.Integer">
+        	<column name="UID"></column>
+        </property>
+        <property name="allTotal" type="java.lang.Double">
+            <column name="ALLTOTAL" />
+        </property>
+        <property name="dateNow" type="java.util.Date">
+            <column name="DATENOW" />
+        </property>
+        <many-to-one name="userId" class="ssh.entries.User" fetch="join">
+            <column name="USERID" />
+        </many-to-one>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="tableNum" type="java.lang.String">
+            <column name="TABLENUM" />
+        </property>
+        <property name="orderStatus" type="java.lang.String">
+            <column name="ORDERSTATUS" />
+        </property>
+        <set name="orderItems" table="ORDERITEM" inverse="false" lazy="false">
+            <key>
+                <column name="ORDERID" />
+            </key>
+            <one-to-many class="ssh.entries.OrderItem" />
+        </set>
+    </class>
+</hibernate-mapping>
